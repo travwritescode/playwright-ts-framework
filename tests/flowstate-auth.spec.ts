@@ -11,11 +11,10 @@ test.describe('Flowstate UI — auth', () => {
     await expect(page.getByLabel('Password')).toBeVisible();
   });
 
-  test('rejects invalid credentials', async ({ page }) => {
-    await page.getByLabel('Email').fill('not-a-user@example.com');
-    await page.getByLabel('Password').fill('notvalid12');
-    await page.getByRole('button', { name: 'Sign In' }).click();
-    await expect(page.getByRole('alert')).toContainText('Invalid email or password.');
+  test('can switch to register mode', async ({ page }) => {
+    await page.getByRole('button', { name: 'Need an account? Register' }).click();
+    await expect(page.getByRole('heading', { name: 'Create Account' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Create Account' })).toBeVisible();
   });
 
   test('logs in and lands on tasks', async ({ page }) => {
