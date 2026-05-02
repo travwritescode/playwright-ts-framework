@@ -1,0 +1,19 @@
+{
+  "name": "playwright-ts-framework",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Playwright TypeScript E2E tests for Flowstate UI",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "codegen": "playwright codegen",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "@types/node": "^22.13.14",
+    "typescript": "^5.8.2"
+  }
+}
