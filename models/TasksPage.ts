@@ -7,6 +7,7 @@ export class TasksPage {
     readonly emptyStateTip: Locator;
     readonly createTaskButton: Locator;
     readonly signOutButton: Locator;
+    readonly tasks: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -16,5 +17,6 @@ export class TasksPage {
         this.emptyStateTip = page.getByRole('paragraph').filter({hasText: 'No tasks found. Create one to get started.'});
         this.createTaskButton = page.getByRole('button', { name: 'Create Task'});
         this.signOutButton = page.getByRole('button', { name: 'Sign Out'});
+        this.tasks = page.locator('[data-testid*="task-item-"]');
     }
 }
