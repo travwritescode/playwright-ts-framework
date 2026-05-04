@@ -43,7 +43,7 @@ test.describe("Flowstate Auth Journeys", () => {
       await loginPage.register(email, password);
 
       await expect(tasksPage.heading).toBeVisible();
-      await expect(tasksPage.emptyStateTip).toBeVisible();
+      await expect(tasksPage.emptyState).toBeVisible();
       await expect(tasksPage.createTaskButton).toBeVisible();
       await expect(tasksPage.signOutButton).toBeVisible();
     },
