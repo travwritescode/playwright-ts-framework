@@ -1,20 +1,28 @@
 import { expect, test } from '@playwright/test';
+import { LoginPage } from '../models/LoginPage.js'
 
 test.describe('Flowstate UI — auth', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/login');
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
   });
 
   test('shows sign-in form', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Sign In' })).toBeVisible();
-    await expect(page.getByLabel('Email')).toBeVisible();
-    await expect(page.getByLabel('Password')).toBeVisible();
+    const loginPage = new LoginPage(page);
+
+    await expect(loginPage.heading).toHaveText('Sign In');
+    await expect(loginPage.emailInput).toBeVisible();
+    await expect(loginPage.passwordInput).toBeVisible();
   });
 
   test('can switch to register mode', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    // TO-DO: figure out an accessible way to make this toggle a single selector
     await page.getByRole('button', { name: 'Need an account? Register' }).click();
-    await expect(page.getByRole('heading', { name: 'Create Account' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Create Account' })).toBeVisible();
+
+    await expect(loginPage.heading).toHaveText('Create Account');
+    await expect(loginPage.createAccountButton).toBeVisible();
   });
 
   test('logs in and lands on tasks', async ({ page }) => {
