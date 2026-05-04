@@ -32,4 +32,11 @@ export class LoginPage {
         await this.passwordInput.fill(password)
         await this.signInButton.click()
     }
+
+    async register(email: string, password: string) {
+        await this.registerToggle.click()
+        await this.emailInput.fill(email)
+        await this.passwordInput.fill(password)
+        await this.createAccountButton.click()
+    }
 }

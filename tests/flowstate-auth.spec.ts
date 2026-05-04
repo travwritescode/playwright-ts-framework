@@ -26,13 +26,9 @@ test.describe('Flowstate UI — auth', () => {
   });
 
   test('logs in and lands on tasks', async ({ page }) => {
-    const email = process.env.FLOWSTATE_E2E_EMAIL;
-    const password = process.env.FLOWSTATE_E2E_PASSWORD;
+    const email = `travshootsphotos@gmail.com`;
+    const password = 'Test1234?';
 
-    if (!email || !password) {
-      test.skip(true, 'Set FLOWSTATE_E2E_EMAIL and FLOWSTATE_E2E_PASSWORD (registered user; API must be up).');
-      return;
-    }
     const loginPage = new LoginPage(page);
     const tasksPage = new TasksPage(page);
 
