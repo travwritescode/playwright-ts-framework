@@ -33,7 +33,7 @@ test.describe("Flowstate Task Lifespan Journeys", () => {
         dueDate: Date.now(),
       };
 
-      const newTitle = 'Edited Task';
+      const newTitle = "Edited Task";
 
       // Open task create modal
       await tasksPage.openCreateModal();
@@ -47,7 +47,8 @@ test.describe("Flowstate Task Lifespan Journeys", () => {
       // Open task modal and edit title, verify new title displays in list
       await tasksPage.openEditFor(taskData.title);
       await expect(taskFormModal.editTaskModalHeading).toBeVisible();
-      await expect(taskFormModal.taskTitle).toHaveValue(taskData.title);      await taskFormModal.editTaskTitle(newTitle);
+      await expect(taskFormModal.taskTitle).toHaveValue(taskData.title);
+      await taskFormModal.editTaskTitle(newTitle);
       await expect(taskFormModal.editTaskModalHeading).not.toBeVisible();
       await expect(tasksPage.taskRow(newTitle)).toBeVisible();
 
@@ -57,17 +58,21 @@ test.describe("Flowstate Task Lifespan Journeys", () => {
     },
   );
 
-  test(
+  test.skip(
     "Journey C: list filters persisted in URL + navigation",
     {
       tag: ["@journey-tasks"],
     },
     async () => {
-      /*
-        TODO:
-        - add filter POM selectors and methods
-        - write test
-        */
+      const filters = {
+        status: "To do",
+        priority: "Low"
+      };
+
+      await tasksPage.applyFilters(filters);
+      await expect(tasksPage.tasks).toHaveCount(1);
+
+      // Need to complete engineering tickets before this test can be finished
     },
   );
 });

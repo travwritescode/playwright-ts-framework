@@ -7,6 +7,9 @@ export class TasksPage {
   readonly createTaskButton: Locator;
   readonly signOutButton: Locator;
 
+  readonly statusFilter: Locator;
+  readonly priorityFilter: Locator;
+
   readonly tasks: Locator;
   readonly emptyState: Locator;
 
@@ -18,10 +21,22 @@ export class TasksPage {
     this.createTaskButton = page.getByRole("button", { name: "Create Task" });
     this.signOutButton = page.getByRole("button", { name: "Sign Out" });
 
+    this.statusFilter = page.locator('#filter-status');
+    this.priorityFilter = page.locator('#filter-priority');
+
     this.tasks = page.locator('[data-testid*="task-item-"]');
     this.emptyState = page
       .getByRole("paragraph")
       .filter({ hasText: "No tasks found. Create one to get started." });
+  }
+
+  async applyFilters(filters: { status?: string; priority?: string }) {
+    if (filters.status) {
+        await this.statusFilter.selectOption(filters.status)
+    }
+    if (filters.priority) {
+        await this.priorityFilter.selectOption(filters.priority)
+    }
   }
 
   async openCreateModal() {

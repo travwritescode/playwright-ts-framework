@@ -36,8 +36,8 @@ export class TaskFormModal {
 
     this.taskTitle = page.getByLabel("Title");
     this.taskDescription = page.getByLabel("Description");
-    this.taskStatus = page.getByTestId("task-form").getByLabel("Status");
-    this.taskPriority = page.getByTestId("task-form").getByLabel("Priority");
+    this.taskStatus = page.locator('#task-status');
+    this.taskPriority = page.locator('#task-priority');
     this.taskDueDate = page.getByTestId("task-form").getByLabel("Due date");
 
     this.taskSaveButton = page.getByRole("button", { name: "Save" });
