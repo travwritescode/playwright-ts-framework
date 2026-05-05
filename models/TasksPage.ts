@@ -33,8 +33,10 @@ export class TasksPage {
   }
 
   async openEditFor(title: string) {
-    await this.taskRow(title)
-      .getByRole("button", { name: "Edit" })
-      .click();
+    await this.taskRow(title).getByRole("button", { name: "Edit" }).click();
+  }
+
+  async deleteTask(title: string) {
+    await this.taskRow(title).getByRole("button", { name: "Delete" }).click();
   }
 }
