@@ -24,7 +24,7 @@ test.describe("Flowstate Task Lifespan Journeys", () => {
   test(
     "Journey B: task lifecycle (create → detail/edit → delete)",
     {
-      tag: ["@journey-tasks"],
+      tag: ["@journey-tasks", "@regression"],
     },
     async () => {
       const taskData = {
@@ -63,7 +63,7 @@ test.describe("Flowstate Task Lifespan Journeys", () => {
   test.skip(
     "Journey C: list filters persisted in URL + navigation",
     {
-      tag: ["@journey-tasks"],
+      tag: ["@journey-tasks", "@regression"],
     },
     async () => {
       const filters = {

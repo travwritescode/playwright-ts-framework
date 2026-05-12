@@ -16,7 +16,7 @@ test.describe("Flowstate Auth Journeys", () => {
   test(
     "Sign in smoke",
     {
-      tag: ["@smoke", "@journey-auth"],
+      tag: ["@smoke", "@journey-auth", "@regression"],
     },
     async () => {
       const email = `travshootsphotos@gmail.com`;
@@ -34,7 +34,7 @@ test.describe("Flowstate Auth Journeys", () => {
   test(
     "Journey A: first-time user registration path",
     {
-      tag: "@journey-auth",
+      tag: ["@journey-auth", "@regression"],
     },
     async () => {
       const email = `travshootsphotos+${Date.now()}@gmail.com`;
