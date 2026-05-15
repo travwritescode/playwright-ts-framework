@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../fixtures/test.js";
 import { LoginPage } from "../models/LoginPage.js";
 import { TasksPage } from "../models/TasksPage.js";
 import { TaskFormModal } from "../models/TaskFormModal.js";
@@ -8,17 +8,13 @@ test.describe("Flowstate Task Lifespan Journeys", () => {
   let tasksPage: TasksPage;
   let taskFormModal: TaskFormModal;
 
-  test.beforeEach(async ({ page }) => {
-    //TODO: Add test cleanup and unique identifiers for test task titles
-
-    const email = `travshootsphotos@gmail.com`;
-    const password = "Test1234?";
+  test.beforeEach(async ({ page, apiUser }) => {
     loginPage = new LoginPage(page);
     tasksPage = new TasksPage(page);
     taskFormModal = new TaskFormModal(page);
 
     await loginPage.goto();
-    await loginPage.login(email, password);
+    await loginPage.login(apiUser.email, apiUser.password);
   });
 
   test(

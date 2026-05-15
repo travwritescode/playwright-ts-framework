@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../fixtures/test.js";
 import { LoginPage } from "../models/LoginPage.js";
 import { TasksPage } from "../models/TasksPage.js";
 
@@ -18,11 +18,13 @@ test.describe("Flowstate Auth Journeys", () => {
     {
       tag: ["@smoke", "@journey-auth", "@regression"],
     },
-    async () => {
-      const email = `travshootsphotos@gmail.com`;
-      const password = "Test1234?";
+    async ({ apiUser, seededTasks }) => {
+      await seededTasks(3);
 
-      await loginPage.login(email, password);
+      const email = apiUser.email;
+      const password = apiUser.password;
+
+      await loginPage.login(apiUser.email, password);
 
       await expect(tasksPage.heading).toBeVisible();
       await expect(tasksPage.createTaskButton).toBeVisible();
